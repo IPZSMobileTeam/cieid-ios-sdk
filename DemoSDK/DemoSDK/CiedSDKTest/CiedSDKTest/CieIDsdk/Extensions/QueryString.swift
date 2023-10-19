@@ -42,14 +42,7 @@ extension URL {
     public var addAppDomainPrefix : URL?{
         //TODO: Check se il prefisso è necessario
         
-        // TEST CIEID:
-        // Caso SDK aggiornato
         let APP_DOMAIN : String = "CIEID:"
-        
-        // TEST CIEID://
-        // Caso SDK non aggiornato
-//        let APP_DOMAIN : String = "CIEID://"
-        
         let finalURL = URL.init(string: "\(APP_DOMAIN)\(self.absoluteString)")
         return finalURL
             
