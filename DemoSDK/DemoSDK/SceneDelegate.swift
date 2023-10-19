@@ -43,8 +43,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
             }
         
-        // TEST
-//            var urlString : String = String(url.absoluteString)
             var urlString = url.absoluteString.replacingOccurrences(of: "https//", with: "https://")
         
             if let httpsRange = urlString.range(of: "https://"){
