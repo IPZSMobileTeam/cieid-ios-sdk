@@ -8,6 +8,8 @@ import UIKit
 import CiedSDKTest
 class ViewController: UIViewController ,CieIdDelegate{
     
+    var mode: Mode = .Default
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -15,10 +17,18 @@ class ViewController: UIViewController ,CieIdDelegate{
     
     @IBAction func entraConCied(_ sender: CieIDButton) {
         let vc = CieIDWKWebViewController()
-        vc.setupDelegate(delegate: self,and: .Redirect)
+        vc.setupDelegate(delegate: self, and: .Redirect, and: self.mode)
         self.present(vc, animated: true, completion: nil)
     }
     
+    @IBAction func actionSegmented(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            self.mode = .Default
+        }
+        else {
+            self.mode = .Universal
+        }
+    }
     
     func CieIDAuthenticationClosedWithSuccess() {
         print("Success")

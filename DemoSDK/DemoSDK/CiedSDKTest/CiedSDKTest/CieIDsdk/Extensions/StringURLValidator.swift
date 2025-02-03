@@ -11,7 +11,7 @@ import UIKit
 //IDP ERROR PARAMETER
 let ERROR_PARAMETER : String = "cieid_error_message"
 //IDP URL COMPONENT
-let IDP_URL_COMPONENT : String = "ios.idserver.servizicie.interno.go"
+let IDP_URL_COMPONENT : String = "ios.idserver.servizicie.interno.go" //"ios.preproduzione.idserver.servizicie.interno.gov.it" 
 //IDP URL RESPONSE COMPONENT
 let IDP_URL_RESPONSE_COMPONENT : String = "idserver.servizicie.interno.gov.it"
 //IDP RESPONSE PARAMETERS

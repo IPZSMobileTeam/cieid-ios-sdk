@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,19 +17,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eSm-LG-34R" customClass="CieIDButton" customModule="CiedSDKTest">
-                                <rect key="frame" x="173.5" y="432.5" width="67" height="31"/>
+                                <rect key="frame" x="169.5" y="431" width="75" height="34.5"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                 <connections>
                                     <action selector="entraConCied:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wb2-Ae-IIZ"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dIG-3A-ymv">
+                                <rect key="frame" x="130.5" y="731" width="153" height="32"/>
+                                <segments>
+                                    <segment title="Default"/>
+                                    <segment title="Universal"/>
+                                </segments>
+                                <connections>
+                                    <action selector="actionSegmented:" destination="BYZ-38-t0r" eventType="valueChanged" id="mUf-2b-GwV"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="eSm-LG-34R" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="H1a-Ll-Wjt"/>
+                            <constraint firstItem="dIG-3A-ymv" firstAttribute="top" relation="greaterThanOrEqual" secondItem="eSm-LG-34R" secondAttribute="bottom" constant="20" id="Myq-ya-Zen"/>
+                            <constraint firstItem="dIG-3A-ymv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Rop-Nn-jgL"/>
                             <constraint firstItem="eSm-LG-34R" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="flb-ni-Hu9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dIG-3A-ymv" secondAttribute="bottom" constant="100" id="vth-qk-bFh"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -39,7 +53,7 @@
     </scenes>
     <designables>
         <designable name="eSm-LG-34R">
-            <size key="intrinsicContentSize" width="67" height="31"/>
+            <size key="intrinsicContentSize" width="75" height="34.5"/>
         </designable>
     </designables>
 </document>

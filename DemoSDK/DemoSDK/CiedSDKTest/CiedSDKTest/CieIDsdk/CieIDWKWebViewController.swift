@@ -13,6 +13,11 @@ import SafariServices
 public enum FlowType {
     case Internal,Redirect
 }
+
+public enum Mode {
+    case Default, Universal
+}
+
 //Costanti di classe
 let NOTIFICATION_NAME : String = "RETURN_FROM_CIEID"
 
@@ -29,6 +34,7 @@ public class CieIDWKWebViewController: UIViewController, WKNavigationDelegate,UI
     private var cancelButton: UIButton!
     private var activityIndicator: UIActivityIndicatorView!
     private var internalFlow: Bool = false
+    private var mode: Mode?
     var delegate: CieIdDelegate?
     var webViewOBV : NSKeyValueObservation?
     public override func viewDidAppear(_ animated: Bool) {
@@ -40,9 +46,10 @@ public class CieIDWKWebViewController: UIViewController, WKNavigationDelegate,UI
     }
     
     
-    public func setupDelegate(delegate: CieIdDelegate, and flowType: FlowType) {
+    public func setupDelegate(delegate: CieIdDelegate, and flowType: FlowType, and mode: Mode? = .Default) {
         self.delegate = delegate
         self.internalFlow = flowType == .Internal
+        self.mode = mode
     }
     public override func loadView() {
 
@@ -302,17 +309,29 @@ public class CieIDWKWebViewController: UIViewController, WKNavigationDelegate,UI
         let string = url.absoluteString
                 
         let path = url.pathComponents
-        if ((string.containsValidIdpUrl && string.contains("nextUrl")) || path.contains("livello1") || path.contains("livello2")) {
-            if self.internalFlow {
-                self.handleInternalFlow(with: string)
-            } else {
-                self.redirectFlow(with: url)//URL(string: editUrl)!)
+        
+        if self.mode == .Universal {
+            if ((string.containsValidIdpUrl && string.contains("idp/login/app") && string.contains("level=2")) || (string.containsValidIdpUrl && string.contains("nextUrl")) || path.contains("livello1")) {
+                if self.internalFlow {
+                    self.handleInternalFlow(with: string)
+                } else {
+                    self.redirectFlow(with: url)
+                }
+                decisionHandler(.cancel)
+                return
             }
-            decisionHandler(.cancel)
-            return
         }
-        
-        
+        else {
+            if ((string.containsValidIdpUrl && string.contains("nextUrl")) || path.contains("livello1") || path.contains("livello2")) {
+                if self.internalFlow {
+                    self.handleInternalFlow(with: string)
+                } else {
+                    self.redirectFlow(with: url)
+                }
+                decisionHandler(.cancel)
+                return
+            }
+        }
         
         if(navigationAction.request.url?.absoluteString.contains("OpenApp") ?? false) {
             print("Hellooo")
